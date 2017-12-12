@@ -38,9 +38,9 @@ public class alienpetfinal
     public static PetInfo info(String name, int hunger, int mood)//sets record for pet
     {
         PetInfo p1 = new PetInfo();
-        p1 = setName(p1, name);
-        p1 = setHunger(p1, hunger);
-        p1 = setMood(p1, mood);
+        p1 = setName(p1, name);//sets the name of the pet that is retrieved from method
+        p1 = setHunger(p1, hunger);//sets the hunger of the pet that is retrieved from method
+        p1 = setMood(p1, mood);//sets the mood of the pet that is retrieved from method
         return p1;
     }
 
@@ -49,10 +49,10 @@ public class alienpetfinal
         String health;
         Scanner scanner = new Scanner(System.in);
         health = scanner.nextLine();
-        if (health.equalsIgnoreCase("hunger"));
+        if (health.equalsIgnoreCase("hunger"));//if 'hunger' is typed then a random number is given
         {
             Random feed = new Random();
-            int hunger = feed.nextInt(10) + 1;
+            int hunger = feed.nextInt(10) + 1;//this will give a random hunger value
             return hunger;
         }
     }
@@ -60,19 +60,19 @@ public class alienpetfinal
     public static int mooding(int hunger)//the mood level depends on the hunger level generated
     {
         int mood = 0;
-        if (hunger >= 9 )
+        if (hunger >= 9 )//when hunger is 9+ mood value 1 is given
         {
             mood = 1;
         }
-        else if(7 <= hunger & hunger <= 8 )
+        else if(7 <= hunger & hunger <= 8 )//hunger is 7 or 8, mood 2 is given
         {
             mood = 2;
         }
-        else if(4 <= hunger & hunger <= 6)
+        else if(4 <= hunger & hunger <= 6)//hunger is 4 to 6, mood 3 is given
         {
             mood = 3;
         }
-        else if(hunger <= 3)
+        else if(hunger <= 3)//hunger is less than 3, mood 4 is given
         {
             mood = 4;
         }
@@ -90,7 +90,7 @@ public class alienpetfinal
     {
         saveDailyStatus(p1, hunger, mood, daycount, hr);//calls the method saveDailyStatus, contains arrays
         daycount++;
-        if (daycount==200)//once daycount reaches 200 rounds, game ends
+        if (daycount==200)//once daycount reaches 200 rounds, game ends, and petDied(hr) method is called
         {
             System.out.println("Game Over");
             petDied(hr);
@@ -99,7 +99,7 @@ public class alienpetfinal
         String closing;
         closing = scanner.nextLine();
 
-        if(closing.equalsIgnoreCase("Close"))
+        if(closing.equalsIgnoreCase("Close"))//if close is typed, petDied(hr) method is called
         {
             petDied(hr);
         }
@@ -121,7 +121,7 @@ public class alienpetfinal
             System.out.println("Day: ");
             Scanner keyboard = new Scanner(System.in);
             String dayToReturn = keyboard.next();//saves the day user wants to return to
-            if(dayToReturn.equalsIgnoreCase("exit"))
+            if(dayToReturn.equalsIgnoreCase("exit"))//if exit is typed, petDied(hr) method is called
             {
                 petDied(hr);
             }
@@ -134,7 +134,7 @@ public class alienpetfinal
             }
         }
         int i = hunger;
-        if (i >= 9 )
+        if (i >= 9 )//if the hunger value is 9+
         {
             System.out.println(getName(p1) + " has a hunger level of " + i);
             System.out.println(getName(p1) + " is not hungry yet");
@@ -142,15 +142,15 @@ public class alienpetfinal
             System.out.println(getName(p1) + " is happy");
             String ans;
             int feeding;
-            System.out.println("Would you like to feed " + getName(p1) + "? Yes/No");
+            System.out.println("Would you like to feed " + getName(p1) + "? Yes/No");//asks user to feed pet
             ans = scanner.nextLine();
             if (ans.equalsIgnoreCase("Yes"))
             {
                 System.out.println("Type in a number you want to feed your pet by?");
-                feeding = Integer.parseInt(scanner.nextLine());
-                int newhunger = feeding + i;
+                feeding = Integer.parseInt(scanner.nextLine());//records how much the user feeds by
+                int newhunger = feeding + i;//adds it to original hunegr value
                 System.out.println(getName(p1) + " now has a hunger level of " + newhunger);
-                setHunger(p1, newhunger);
+                setHunger(p1, newhunger);//newhunger value is set
                 hungerlevel(p1, newhunger, mood, daycount, hr);
             }
             else if (ans.equalsIgnoreCase("No") | ans.equals(""))
